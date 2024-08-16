@@ -21,7 +21,7 @@
             <b-navbar-item tag="router-link" :to="{ path: '/' }">
               Home
             </b-navbar-item>
-            <b-navbar-item tag="router-link" :to="{ path: '/' }">
+            <b-navbar-item tag="router-link" :to="{ path: '/helloworld' }">
                 Documentation
             </b-navbar-item>
             <b-navbar-dropdown label="Info">
