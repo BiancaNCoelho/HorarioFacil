@@ -16,6 +16,11 @@ const routes = [
     //  name: 'nome-da-rota',
     //  component: () => import('../views/NomeDaRotaView.vue')
     // },
+     {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/LoginView.vue')
+    },
     {
       path: '/about',
       name: 'about',
