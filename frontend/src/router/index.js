@@ -21,6 +21,11 @@ const routes = [
       name: 'about',
       component: () => import('../views/AboutView.vue')
     }
+    {
+      path: '/edit',
+      name: 'edit',
+      component: () => import('../views/EditClass.vue')
+    }
   ];
 
 const router = new VueRouter({
