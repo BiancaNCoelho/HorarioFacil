@@ -37,7 +37,7 @@
               <strong>Sign up</strong>
             </a>
             <a class="button is-light">
-              Log in
+              <RouterLink :to="{ name: 'login'}">Log in</RouterLink>
             </a>
           </div>
         </b-navbar-item>
