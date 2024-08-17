@@ -1,21 +1,29 @@
 <!-- LoginView -->
 <template>
   <div class="loginview">
-    <section class="teste">
+    <section class="login-card">
       <div class="card">
         <div class="card-content">
           <div class="content">
+            
+            <!-- Card Title -->
             <h1 class="title">Login</h1>
+
+            <!-- CPF field-->
             <b-field label="CPF" horizontal>
               <b-input v-model="cpf" placeholder="CPF"></b-input>
             </b-field>
+            
+            <!-- Password field-->
             <b-field label="Senha" horizontal>
               <b-input type="senha" password-reveal placeholder="senha"></b-input>
             </b-field>
+            
             <b-button type="is-primary">
               <!-- mudar depois -->
               <RouterLink :to="{ name: 'Home'}" style="color: white;"> Login </RouterLink>
             </b-button>
+          
           </div>
         </div>
       </div>
@@ -24,7 +32,7 @@
 </template>
 
 <script>
-
+// Add your script code here
 </script>
 
 <style lang="css" scoped>
