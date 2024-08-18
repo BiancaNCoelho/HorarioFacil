@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!--<header>
+    <!--<header> Rever cabeçalho depois
        <img src="@/assets/logo.svg" alt="Logo" /> 
       <nav>
         <router-link to="/">Home</router-link>
