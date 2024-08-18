@@ -1,0 +1,58 @@
+.quadro1, .quadro2, .quadro3, .quadro4 {
+    padding: 2vw 5vw 2vw 5vw;
+    width: 50%;
+    height: 60vh;
+    margin-bottom: 1vw;
+    margin-top: 1vw;
+}
+
+.image {
+    width: 20vw;
+    height: auto;
+    align-self: center;
+    object-fit: cover;
+    display: block;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+
+.sobre-texto-titulo {
+    font-size: 2vw;
+    text-align: center;
+    margin-bottom: 1vw;
+}
+
+.sobre-texto {
+    font-size: 1.3vw;
+    line-height: 1.3;
+    text-align: justify;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.sobre-texto-placeholder{
+    font-size: 2.5vw;
+    text-align: center;
+    margin-top: 15%;
+}
+
+.quadro2, .quadro4 {
+    float: right;
+}
+
+.quadro1, .quadro3 {
+    float: left;
+}
+
+.carousel-caption {
+    position: absolute;
+    width: 100%;
+    font-size: 1.2vw;
+    top: 90%;
+    left: 50%;
+    background-color: white;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}

@@ -23,6 +23,11 @@
           Home
         </b-navbar-item>
 
+        <!-- link router para a página EditAula -->
+        <b-navbar-item tag="router-link" :to="{ name: 'edit' }">
+          EditClass
+        </b-navbar-item>
+
         <!-- link router para a página About -->
         <b-navbar-item tag="router-link" :to="{ name: 'about' }">
           Sobre
