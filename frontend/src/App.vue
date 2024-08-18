@@ -10,7 +10,7 @@
     <section class="header">
     <b-navbar>
       <template #brand>
-        <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
+        <b-navbar-item tag="router-link" :to="{ name: 'home' }">
           <img
             src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
             alt="Buefy Logo"
@@ -19,7 +19,7 @@
       </template>
       <template #start>
         <!-- link router para a página Home -->
-        <b-navbar-item tag="router-link" :to="{ name: 'Home' }">
+        <b-navbar-item tag="router-link" :to="{ name: 'home' }">
           Home
         </b-navbar-item>
 
