@@ -32,17 +32,17 @@
         <b-navbar-item tag="router-link" :to="{ name: 'about' }">
           Sobre
         </b-navbar-item>
-      
+
         <!-- Botoes Sign Up e Login -->
       </template>
       <template #end>
         <b-navbar-item tag="div">
           <div class="buttons">
-            <a class="button is-primary">
+            <a v-if="showButton" class="button is-primary">
               <strong>Sign up</strong>
             </a>
-            <a class="button is-light">
-              Log in
+            <a v-if="showButton" class="button is-light">
+              <RouterLink :to="{ name: 'login'}">Log in</RouterLink>
             </a>
           </div>
         </b-navbar-item>
@@ -54,7 +54,7 @@
     </section>
     
     <!-- Footer -->
-    <section class="footer">
+    <section v-if="showFooter" class="footer">
 
       <footer class="footer">
         <div class="content has-text-centered">
@@ -72,6 +72,14 @@
 <script>
 export default {
   name: 'App',
+  computed: {
+    showButton() {
+      return this.$route.name !== 'login';
+    },
+    showFooter() {
+      return this.$route.name !== 'login';
+    }
+  }
 };
 </script>
 
