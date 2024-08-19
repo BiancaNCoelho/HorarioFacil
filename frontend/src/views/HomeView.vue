@@ -21,5 +21,7 @@
     .card {
         margin: 0 auto;
         display: flex;
+        justify-content: center;
+        padding: 10vw;
     }
 </style>
