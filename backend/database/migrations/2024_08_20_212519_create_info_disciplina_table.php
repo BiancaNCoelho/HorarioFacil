@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('sala');
             $table->time('horario_inicio');
             $table->time('horario_fim');
+            $table->unsignedBigInteger('disciplina_id'); // Adiciona a coluna disciplina_id
             $table->foreign('disciplina_id')->references('id')->on('disciplina')->onUpdate('cascade')->onDelete('cascade');
             $table->json('semana'); // É ASSIM?
             $table->string('predio');
