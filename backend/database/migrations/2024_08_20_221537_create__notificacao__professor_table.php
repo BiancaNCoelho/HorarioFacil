@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('_notificacao__professor', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrementsid();
             $table->unsignedBigInteger('professor_id');
             $table->foreign('professor_id')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('notificacao_id');

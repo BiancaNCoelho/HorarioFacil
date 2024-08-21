@@ -11,7 +11,7 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('_disciplina__professor', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrementsid();
             $table->unsignedBigInteger('disciplina_id');
             $table->foreign('disciplina_id')->references('id')->on('disciplina')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('professor_id');

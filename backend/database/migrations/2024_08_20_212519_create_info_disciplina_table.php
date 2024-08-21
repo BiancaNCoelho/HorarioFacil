@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('info_disciplina', function (Blueprint $table) {
-            $table->id();
-            $table->string('sala');
+            $table->bigIncrementsid();
+            $table->string('sala')->nullable();
             $table->time('horario_inicio');
             $table->time('horario_fim');
             $table->unsignedBigInteger('disciplina_id'); // Adiciona a coluna disciplina_id

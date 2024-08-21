@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('_notificacao', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrementsid();
             $table->text('texto');
             $table->string('tipo_notificacao');
             $table->date('data');
