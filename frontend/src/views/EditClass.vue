@@ -154,6 +154,7 @@ export default {
 <style scoped>
 body {
   font-family: Arial, sans-serif;
+  font-size: 14px; /* Diminui a fonte de toda a página */
 }
 
 .container {
@@ -205,12 +206,13 @@ header nav a:hover {
 label {
   margin-bottom: 5px;
   font-weight: bold;
+  font-size: 14px; /* Diminui a fonte das labels */
 }
 
 input,
 select {
   padding: 10px;
-  font-size: 16px;
+  font-size: 14px; /* Diminui a fonte dos inputs e selects */
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #000;
@@ -233,7 +235,7 @@ select {
 
 .buttons button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 14px; /* Diminui a fonte dos botões */
   border: 1px solid #000;
   background-color: white;
   cursor: pointer;
