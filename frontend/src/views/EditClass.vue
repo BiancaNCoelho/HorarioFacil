@@ -1,17 +1,8 @@
 <template>
   <div>
-    <!--<header> Rever cabeçalho depois
-       <img src="@/assets/logo.svg" alt="Logo" /> 
-      <nav>
-        <router-link to="/">Home</router-link>
-        <router-link to="/grade">Grade</router-link>
-        <router-link to="/adicionar-aula">Adicionar Aula</router-link>
-        <a class="disabled-link" href="javascript:void(0);">Editar Aula</a>
-      </nav>
-    </header>-->
-
     <div class="container">
       <div class="buttons">
+        <span class="edit-class">Editar Aula</span>
         <button @click="goBack">&#60; Voltar para grade</button>
       </div>
       <form @submit.prevent="saveClass">
@@ -126,7 +117,7 @@ export default {
       endTimeMinute: '',
       classroom: '',
       weekday: '',
-      hours: [...Array(24).keys()].map(i => (i < 10 ? '0' + i : i)),
+      hours: Array.from({ length: 15 }, (_, i) => i + 8).map(hour => (hour < 10 ? '0' + hour : hour)),
       minutes: [...Array(60).keys()].map(i => (i < 10 ? '0' + i : i))
     };
   },
@@ -229,6 +220,7 @@ select {
 
 .buttons {
   display: flex;
+  align-items: center; /* Alinha verticalmente os itens */
   justify-content: space-between;
   margin-top: 20px;
 }
@@ -239,10 +231,16 @@ select {
   border: 1px solid #000;
   background-color: white;
   cursor: pointer;
+  border-radius: 8px; /* Adiciona bordas arredondadas aos botões */
 }
 
 .buttons button:hover {
   background-color: lightgray;
+}
+
+.edit-class {
+  font-weight: bold; /* Faz o texto em negrito */
+  margin-left: 20px; /* Espaço entre o botão e o texto */
 }
 
 footer {

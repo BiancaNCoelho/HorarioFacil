@@ -32,6 +32,11 @@ const routes = [
       component: () => import('../views/AboutView.vue')
     },
     {
+      path: '/add',
+      name: 'add',
+      component: () => import('../views/AddClass.vue')
+    },
+    {
       path: '/edit',
       name: 'edit',
       component: () => import('../views/EditClass.vue')
