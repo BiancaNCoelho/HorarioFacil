@@ -22,8 +22,8 @@ class Disciplina extends Model
     ];
 
     // Relacionamento de um para um com infoDisciplina
-    public function aula()
+    public function turma()
     {
-        return $this->hasOne(Aula::class);
+        return $this->hasMany(turma::class);
     }
 }

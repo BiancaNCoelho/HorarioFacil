@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('usuarios', function (Blueprint $table) {
 		$table->bigIncrements('id');
 		$table->string('name');                        // Nome do usuário
 		$table->string('cpf')->unique();               // CPF (usando string para armazenar caracteres e evitar problemas com zeros à esquerda)
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('usuario');
+        Schema::dropIfExists('usuarios');
     }
 };

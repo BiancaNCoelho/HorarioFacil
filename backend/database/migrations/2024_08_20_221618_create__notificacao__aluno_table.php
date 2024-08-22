@@ -11,11 +11,11 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('_notificacao__aluno', function (Blueprint $table) {
-            $table->bigIncrementsid();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('aluno_id');
-            $table->foreign('aluno_id')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('cascade');
             $table->unsignedBigInteger('notificacao_id');   
-            $table->foreign('notificacao_id')->references('id')->on('_notificacao')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('aluno_id')->references('id')->on('usuarios')->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('notificacao_id')->references('id')->on('notificacaos')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

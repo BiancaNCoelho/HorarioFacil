@@ -10,8 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('notificacao', function (Blueprint $table) {
-            $table->bigIncrementsid();
+        Schema::create('notificacaos', function (Blueprint $table) {
+            $table->bigIncrements('id');
             $table->text('texto');
             $table->string('tipo_notificacao');
             $table->date('data');
@@ -26,6 +26,7 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('notificacao');
+        Schema::dropIfExists('notificacaos');
     }
+    
 };

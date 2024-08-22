@@ -10,7 +10,7 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('disciplina', function (Blueprint $table) {
+        Schema::create('disciplinas', function (Blueprint $table) {
             $table->bigIncrements('id'); // Cria a coluna 'id' como chave primária auto-incrementada
             $table->string('nome'); // Nome da disciplina
             $table->string('codigo')->unique(); // Código da disciplina (único)
@@ -24,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('disciplina');
+        Schema::dropIfExists('disciplinas');
     }
 };

@@ -10,8 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('_disciplina__professor', function (Blueprint $table) {
+        Schema::create('turmas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nome');
             $table->unsignedBigInteger('disciplina_id');
             $table->unsignedBigInteger('professor_id');
             $table->foreign('disciplina_id')->references('id')->on('disciplinas')->onUpdate('cascade')->onDelete('cascade');
@@ -25,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('_disciplina__professor');
+        Schema::dropIfExists('turmas');
     }
 };
