@@ -2,17 +2,21 @@
   <div>
     <div class="container">
       <div class="buttons">
+        <!-- Exibe um texto para edição de aula e um botão para voltar à grade de aulas -->
         <span class="edit-class">Editar Aula</span>
         <button @click="goBack">&#60; Voltar para grade</button>
       </div>
+      <!-- Formulário para edição de aula, previne o comportamento padrão de submissão ao clicar -->
       <form @submit.prevent="saveClass">
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
+              <!-- Campo para entrada do nome da aula -->
               <label for="class-name">Nome da aula</label>
               <input type="text" v-model="className" id="class-name" />
             </div>
             <div class="form-column">
+              <!-- Campo para selecionar o nome da matéria -->
               <label for="subject-name">Subject Name</label>
               <select v-model="subjectName" id="subject-name">
                 <option value="">Selecionar Matéria</option>
@@ -27,10 +31,12 @@
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
+              <!-- Campo para entrada do nome do professor -->
               <label for="teacher-name">Nome do professor</label>
               <input type="text" v-model="teacherName" id="teacher-name" />
             </div>
             <div class="form-column">
+              <!-- Seletor de tempo de início da aula com horas e minutos -->
               <label for="start-time-hour">Tempo de início</label>
               <div class="time-select">
                 <select v-model="startTimeHour" id="start-time-hour">
@@ -47,6 +53,7 @@
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
+              <!-- Seletor do campus onde a aula será ministrada -->
               <label for="campus">Campus</label>
               <select v-model="campus" id="campus">
                 <option value="">Selecionar Campus</option>
@@ -55,6 +62,7 @@
               </select>
             </div>
             <div class="form-column">
+              <!-- Seletor de tempo de fim da aula com horas e minutos -->
               <label for="end-time-hour">Tempo de fim</label>
               <div class="time-select">
                 <select v-model="endTimeHour" id="end-time-hour">
@@ -71,10 +79,12 @@
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
+              <!-- Campo para entrada do nome da sala onde a aula será ministrada -->
               <label for="classroom">Sala</label>
               <input type="text" v-model="classroom" id="classroom" />
             </div>
             <div class="form-column">
+              <!-- Seletor do dia da semana em que a aula será ministrada -->
               <label for="weekday">Dia da semana</label>
               <select v-model="weekday" id="weekday">
                 <option value="monday">Segunda-feira</option>
@@ -88,6 +98,7 @@
           </div>
         </div>
 
+        <!-- Botões para salvar, deletar ou cancelar as alterações feitas -->
         <div class="buttons">
           <button type="submit">Salvar alterações</button>
           <button type="button" @click="deleteClass">Deletar aula</button>
@@ -96,6 +107,7 @@
       </form>
     </div>
 
+    <!-- Links para notificações e configurações no rodapé da página -->
     <footer>
       <router-link to="/notificacoes">Notificações</router-link>
       <router-link to="/configuracoes">Configurações</router-link>
@@ -107,6 +119,7 @@
 export default {
   data() {
     return {
+      // Variáveis reativas para armazenar os dados do formulário
       className: '',
       subjectName: '',
       teacherName: '',
@@ -117,22 +130,28 @@ export default {
       endTimeMinute: '',
       classroom: '',
       weekday: '',
+      // Array de horas (8h a 22h) para popular os selects de hora
       hours: Array.from({ length: 15 }, (_, i) => i + 8).map(hour => (hour < 10 ? '0' + hour : hour)),
+      // Array de minutos (0 a 59) para popular os selects de minuto
       minutes: [...Array(60).keys()].map(i => (i < 10 ? '0' + i : i))
     };
   },
   methods: {
+    // Navega de volta para a página da grade de aulas
     goBack() {
       this.$router.push('/grade');
     },
+    // Exibe um alerta ao salvar a aula
     saveClass() {
       alert('Aula salva com sucesso!');
     },
+    // Exibe uma confirmação antes de deletar a aula e, em caso afirmativo, exibe um alerta de deleção
     deleteClass() {
       if (confirm('Tem certeza de que deseja deletar esta aula?')) {
         alert('Aula deletada.');
       }
     },
+    // Exibe uma confirmação antes de cancelar as alterações e, em caso afirmativo, navega de volta para a página inicial
     cancel() {
       if (confirm('Deseja cancelar as alterações?')) {
         this.$router.push('/');
@@ -143,6 +162,7 @@ export default {
 </script>
 
 <style scoped>
+/* Estilos globais para o corpo da página */
 body {
   font-family: Arial, sans-serif;
   font-size: 14px; /* Diminui a fonte de toda a página */
@@ -154,6 +174,7 @@ body {
   padding: 20px;
 }
 
+/* Estilos para o cabeçalho da página */
 header {
   display: flex;
   align-items: center;
@@ -173,16 +194,19 @@ header nav a:hover {
   color: orange;
 }
 
+/* Estilos para os grupos de formulários */
 .form-group {
   margin-bottom: 20px;
 }
 
+/* Estilos para as linhas de formulários */
 .form-row {
   display: flex;
   justify-content: space-between;
   margin-bottom: 20px;
 }
 
+/* Estilos para as colunas de formulários */
 .form-column {
   flex: 1;
   display: flex;
@@ -194,12 +218,14 @@ header nav a:hover {
   margin-right: 0;
 }
 
+/* Estilos para os rótulos dos campos do formulário */
 label {
   margin-bottom: 5px;
   font-weight: bold;
   font-size: 14px; /* Diminui a fonte das labels */
 }
 
+/* Estilos para os campos de entrada e seletores */
 input,
 select {
   padding: 10px;
@@ -209,6 +235,7 @@ select {
   border: 1px solid #000;
 }
 
+/* Estilos para o seletor de tempo (hora e minuto) */
 .time-select {
   display: flex;
   gap: 10px;
@@ -218,6 +245,7 @@ select {
   flex: 1;
 }
 
+/* Estilos para o conjunto de botões */
 .buttons {
   display: flex;
   align-items: center; /* Alinha verticalmente os itens */
@@ -238,11 +266,13 @@ select {
   background-color: lightgray;
 }
 
+/* Estilos para o texto "Editar Aula" */
 .edit-class {
   font-weight: bold; /* Faz o texto em negrito */
   margin-left: 20px; /* Espaço entre o botão e o texto */
 }
 
+/* Estilos para o rodapé da página */
 footer {
   border-top: 1px solid #000;
   padding: 10px;
