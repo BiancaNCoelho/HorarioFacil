@@ -1,8 +1,12 @@
 <?php
 
+use App\Http\Controllers\UsuariosController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AulasController;
+use App\Http\Controllers\AuthController;
+
+Route::post('/login', [AuthController::class, 'login']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -11,6 +15,7 @@ Route::get('/user', function (Request $request) {
 Route::middleware(['auth', 'check.user.type:professor,administrador'])->group(function () {
     Route::post('/aulas', [AulasController::class, 'store']);
     Route::put('/aulas/{aula}', [AulasController::class, 'update']);
+    Route::get('/usuarios', [UsuariosController::class, 'index']);
 });
 
 Route::get('/aulas', [AulasController::class, 'index']);
