@@ -12,8 +12,8 @@ class Turma extends Model
     protected $table = 'aula';
 
     protected $fillable = [
+        'nome',
         'disciplina_id',
-        'turma',
         'professor_id',
     ];
 
@@ -25,10 +25,10 @@ class Turma extends Model
 
     public function usuario()
     {
-        return $this->hasOne(Usuario::class);
+        return $this->hasOne(Usuario::class, 'professor_id');
     }
 
-    public function Aula()
+    public function aula()
     {
         return $this->hasMany(Aula::class);
     }

@@ -13,7 +13,7 @@ class DisciplinaFactory extends Factory
     {
         return [
             'nome' => $this->faker->word,
-            'codigo' => $this->faker->unique()->randomNumber(5),
+            'codigo' => $this->faker->unique()->randomNumber(5, true),
             'carga_horaria' => $this->faker->numberBetween(30, 60),
         ];
     }

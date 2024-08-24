@@ -20,4 +20,9 @@ class Notificacao extends Model
         'hora',
         'is_read',
     ];
+
+    public function usuario()
+    {
+        return $this->belongsTo(Usuario::class);
+    }
 }
