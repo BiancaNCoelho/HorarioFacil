@@ -30,7 +30,7 @@ class UsuarioFactory extends Factory
             'name' => $faker->name(),
             'cpf' => $faker->cpf,
             'email' => $faker->unique()->safeEmail(),
-            'senha' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('password'),
             'tipo_usuario' => $faker->randomElement(['aluno', 'professor', 'administrador']),
             'departamento' => $faker->word(),
             'curso' => $faker->word(),
@@ -46,7 +46,7 @@ class UsuarioFactory extends Factory
         return $this->state(fn(array $attributes) => [
             'tipo_usuario' => 'administrador',
             'nivel' => 2, // Nivel para administrador
-            'senha' => 'admin',
+            'password' => Hash::make('admin'), // Senha hashada
         ]);
     }
 
@@ -58,6 +58,7 @@ class UsuarioFactory extends Factory
         return $this->state(fn(array $attributes) => [
             'tipo_usuario' => 'professor',
             'nivel' => 1, // Nivel para professor
+            'password' => Hash::make('password'), // Senha hashada, ou outro valor
         ]);
     }
 
@@ -69,6 +70,7 @@ class UsuarioFactory extends Factory
         return $this->state(fn(array $attributes) => [
             'tipo_usuario' => 'aluno',
             'nivel' => 0, // Nivel para aluno
+            'password' => Hash::make('password'), // Senha hashada, ou outro valor
         ]);
     }
 

@@ -15,14 +15,14 @@ class AuthController extends Controller
         // Valida as credenciais do usuário
         $request->validate([
             'email' => 'required|string|email',
-            'senha' => 'required|string',
+            'password' => 'required|string',
         ]);
 
         // Tenta encontrar o usuário com base no email
         $usuario = Usuario::where('email', $request->email)->first();
 
         // Verifica se o usuário existe e se a senha está correta
-        if (!$usuario || !Hash::check($request->senha, $usuario->senha)) {
+        if (!$usuario || !Hash::check($request->password, $usuario->password)) {
             throw ValidationException::withMessages([
                 'email' => ['As credenciais estão incorretas.'],
             ]);

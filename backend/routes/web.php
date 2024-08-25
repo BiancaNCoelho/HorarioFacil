@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllera\Auth\UsuariosController; // define usuarios
+use App\Http\Controllers\UsuariosController;
 
 #Route::get('/', function () {
     #return view('welcome');

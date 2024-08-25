@@ -16,7 +16,7 @@ return new class extends Migration
 		$table->string('name');                        // Nome do usuário
 		$table->string('cpf')->unique();               // CPF (usando string para armazenar caracteres e evitar problemas com zeros à esquerda)
 		$table->string('email')->unique();             // Email (corrigido para 'email')
-		$table->string('senha');                       // Senha (pode ser 'text' se necessário)
+		$table->string('password');                       // Senha (pode ser 'text' se necessário)
 		$table->enum('tipo_usuario', ['aluno', 'professor', 'administrador']); // Tipo do usuário
 		$table->string('departamento')->nullable();    // Departamento (pode ser nulo para alguns tipos de usuário)
 		$table->string('curso')->nullable();           // Curso (pode ser nulo para alguns tipos de usuário)
