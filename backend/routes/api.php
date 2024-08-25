@@ -8,9 +8,11 @@ use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
+Route::get('/aluno/{id}/aulas', [AulasController::class, 'aulasDoAluno']);
+
+//Route::get('/user', function (Request $request) {
+//    return $request->user();
+//})->middleware('auth:sanctum');
 
 Route::middleware(['auth', 'check.user.type:professor,administrador'])->group(function () {
     Route::post('/aulas', [AulasController::class, 'store']);

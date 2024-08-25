@@ -26,12 +26,25 @@ class TurmaFactory extends Factory
      */
     public function definition(): array
     {
+        // Definindo data de início e data de fim
+        $dataInicio = $this->faker->dateTimeBetween('-1 year', 'now');
+        $dataFim = $this->faker->dateTimeBetween($dataInicio, '+1 year');
+
         return [
             'nome' => $this->faker->word(), // Nome da turma
-            'disciplina_id' => Disciplina::factory(), // Cria uma disciplina relacionada
-            'professor_id' => Usuario::factory()->state([
-                'tipo_usuario' => 'professor', // Assegura que o usuário é um professor
-            ]),
+
+            // Seleciona uma disciplina existente ou cria uma nova
+            'disciplina_id' => Disciplina::query()->inRandomOrder()->value('id') ?? Disciplina::factory(),
+
+            // Seleciona um professor existente ou cria um novo
+            'professor_id' => Usuario::query()->where('tipo_usuario', 'professor')->inRandomOrder()->value('id') 
+                ?? Usuario::factory()->state([
+                    'tipo_usuario' => 'professor',
+                ]),
+
+            'data_inicio' => $dataInicio,
+            'data_fim' => $dataFim,
+            
             'created_at' => now(),
             'updated_at' => now(),
         ];

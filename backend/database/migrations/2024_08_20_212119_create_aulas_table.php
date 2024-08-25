@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('aulas', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->unsignedBigInteger('turma_id');
             $table->foreign('turma_id')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('cascade');
             $table->enum('dia_da_semana', ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo']);

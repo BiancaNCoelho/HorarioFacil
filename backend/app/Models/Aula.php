@@ -12,7 +12,6 @@ class Aula extends Model
     protected $table = 'aulas';
 
     protected $fillable = [
-        'turma_id',
         'dia_da_semana',
         'horario',
         'sala',

@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('usuarios', function (Blueprint $table) {
 		$table->bigIncrements('id');
 		$table->string('name');                        // Nome do usuário
-		$table->string('cpf')->unique();               // CPF (usando string para armazenar caracteres e evitar problemas com zeros à esquerda)
+		$table->string('matricula')->unique();               
 		$table->string('email')->unique();             // Email (corrigido para 'email')
 		$table->string('password');                       // Senha (pode ser 'text' se necessário)
 		$table->enum('tipo_usuario', ['aluno', 'professor', 'administrador']); // Tipo do usuário

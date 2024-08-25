@@ -20,7 +20,7 @@ class Usuario extends Authenticatable
     // Definir os atributos preenchíveis
     protected $fillable = [
         'name',
-        'cpf',
+        'matricula',
         'email',
         'password',
         'tipo_usuario',
@@ -36,7 +36,9 @@ class Usuario extends Authenticatable
      */
     // Ocultar atributos sensíveis
     protected $hidden = [
+        'id',
         'password',
+        'updated_at',
     ];
 
     protected $casts = [
@@ -45,15 +47,18 @@ class Usuario extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function aula()
+    public function turmas()
     {
-        return $this->hasMany(Aula::class);
-
+        return $this->belongsToMany(Turma::class, 'matriculas')->withPivot('matricula');
     }
-
     public function notificacao()
     {
         return $this->hasMany(Notificacao::class);
+    }
+
+    public function matricula()
+    {
+        return $this->hasMany(Matricula::class);
     }
 }
 

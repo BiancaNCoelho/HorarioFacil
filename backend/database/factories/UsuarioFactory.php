@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
-use App\Faker\CpfProvider;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Usuario>
@@ -24,11 +23,10 @@ class UsuarioFactory extends Factory
     public function definition(): array
     {
         $faker = $this->faker;
-        $faker->addProvider(new CpfProvider($faker));
         
         return [
             'name' => $faker->name(),
-            'cpf' => $faker->cpf,
+            'matricula' => $faker->unique()->numerify('#########'), // Número de 9 dígitos
             'email' => $faker->unique()->safeEmail(),
             'password' => static::$password ??= Hash::make('password'),
             'tipo_usuario' => $faker->randomElement(['aluno', 'professor', 'administrador']),
@@ -45,7 +43,7 @@ class UsuarioFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'tipo_usuario' => 'administrador',
-            'nivel' => 2, // Nivel para administrador
+            'nivel' => 2, // Nível para administrador
             'password' => Hash::make('admin'), // Senha hashada
         ]);
     }
@@ -57,8 +55,8 @@ class UsuarioFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'tipo_usuario' => 'professor',
-            'nivel' => 1, // Nivel para professor
-            'password' => Hash::make('password'), // Senha hashada, ou outro valor
+            'nivel' => 1, // Nível para professor
+            'password' => Hash::make('password'), // Senha hashada
         ]);
     }
 
@@ -69,8 +67,8 @@ class UsuarioFactory extends Factory
     {
         return $this->state(fn(array $attributes) => [
             'tipo_usuario' => 'aluno',
-            'nivel' => 0, // Nivel para aluno
-            'password' => Hash::make('password'), // Senha hashada, ou outro valor
+            'nivel' => 0, // Nível para aluno
+            'password' => Hash::make('password'), // Senha hashada
         ]);
     }
 
