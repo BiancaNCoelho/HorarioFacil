@@ -124,10 +124,70 @@ export default {
     goBack() {
       this.$router.push('/grade');
     },
-    // Método para salvar a aula, atualmente apenas mostra um alerta de sucesso
+    // Método para salvar a aula com validações
     saveClass() {
-      alert('Aula adicionada com sucesso!');
-    }
+  // Verificação de Subject Name
+  if (!this.subjectName || this.subjectName === "Selecionar Matéria") {
+    alert("Por favor, selecione uma matéria.");
+    return;
+  }
+
+  // Verificação do nome do Professor
+  if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]{2,}$/.test(this.teacherName)) {
+    alert("O nome do professor deve conter apenas letras (incluindo acentuação) e espaços, com pelo menos duas letras.");
+    return;
+  }
+
+  // Verificação do Campus
+  if (!this.campus || this.campus === "Selecionar Campus") {
+    alert("Por favor, selecione um campus.");
+    return;
+  }
+
+  // Verificação da Sala
+  if (!/^[0-9]+$/.test(this.classroom)) {
+    alert("O número da sala deve conter apenas números e ter pelo menos um dígito.");
+    return;
+  }
+
+  // Verificação da seleção de horas e minutos para Tempo de Início e Tempo de Fim
+  if (!this.startHour || !this.startMinute) {
+    alert("Por favor, selecione a hora e os minutos para o Tempo de Início.");
+    return;
+  }
+
+  if (!this.endHour || !this.endMinute) {
+    alert("Por favor, selecione a hora e os minutos para o Tempo de Fim.");
+    return;
+  }
+
+  const startTime = parseInt(this.startHour) * 60 + parseInt(this.startMinute);
+  const endTime = parseInt(this.endHour) * 60 + parseInt(this.endMinute);
+
+  if (startTime === endTime) {
+    alert("Tempo de início e Tempo de fim não podem ser iguais.");
+    return;
+  }
+
+  if (parseInt(this.startHour) === parseInt(this.endHour) && parseInt(this.endMinute) <= parseInt(this.startMinute)) {
+    alert("Os minutos de Tempo de fim devem ser maiores que os minutos de Tempo de início.");
+    return;
+  }
+
+  if (parseInt(this.startHour) > parseInt(this.endHour)) {
+    alert("A hora de Tempo de início não pode ser maior que a hora de Tempo de fim.");
+    return;
+  }
+
+  // Verificação do Dia da Semana
+  if (!this.weekday) {
+    alert("Por favor, selecione um dia da semana.");
+    return;
+  }
+
+  // Se todas as verificações forem satisfeitas
+  alert('Aula adicionada com sucesso!');
+}
   }
 };
 </script>
