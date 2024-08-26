@@ -21,6 +21,11 @@ class Aula extends Model
 
     public function turma()
     {
-        return $this->belongsTo(Turma::class);
+        return $this->belongsTo(Turma::class, 'turma_id');
+    }
+
+    public function alunos()
+    {
+        return $this->belongsToMany(Usuario::class, 'aula_usuario');
     }
 }

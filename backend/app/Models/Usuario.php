@@ -49,7 +49,7 @@ class Usuario extends Authenticatable
 
     public function turmas()
     {
-        return $this->belongsToMany(Turma::class, 'matriculas')->withPivot('matricula');
+        return $this->belongsToMany(Turma::class, 'matriculas', 'usuario_id', 'turma_id');
     }
     public function notificacao()
     {
@@ -59,6 +59,11 @@ class Usuario extends Authenticatable
     public function matricula()
     {
         return $this->hasMany(Matricula::class);
+    }
+
+    public function aulas()
+    {
+        return $this->belongsToMany(Aula::class, 'aula_usuario');
     }
 }
 

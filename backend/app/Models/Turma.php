@@ -25,33 +25,29 @@ class Turma extends Model
         return $this->belongsTo(Disciplina::class);
     }
 
-    public function usuario()
+    public function professor()
     {
-        return $this->hasOne(Usuario::class, 'professor_id');
+        return $this->belongsTo(Usuario::class, 'professor_id');
     }
 
-    public function aula()
+    public function aulas()
     {
-        return $this->hasMany(Aula::class);
+        return $this->hasMany(Aula::class, 'turma_id');
     }
 
     public function alunos()
     {
-        return $this->hasMany(Usuario::class, 'matriculas')->withPivot('matricula');
+        return $this->belongsToMany(Usuario::class, 'matriculas', 'turma_id', 'usuario_id')->withPivot('matricula');
     }
 
     public function adicionarAlunos(array $matriculas)
     {
         foreach ($matriculas as $matricula) {
-            // Encontrar o usuário com a matrícula
             $usuario = Usuario::where('matricula', $matricula)->first();
 
             if ($usuario) {
-                // Criar uma nova entrada na tabela 'matriculas'
-                Matricula::create([
-                    'usuario_id' => $usuario->id,
-                    'turma_id' => $this->id,
-                ]);
+                // Adiciona o aluno à turma
+                $this->alunos()->attach($usuario->id, ['matricula' => $matricula]);
 
                 // Enviar notificação ao aluno
                 Notificacao::create([

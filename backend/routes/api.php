@@ -8,6 +8,11 @@ use App\Http\Controllers\AuthController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
+Route::get('/usuarios', [UsuariosController::class, 'index']);
+
+Route::get('/alunos', [AulasController::class, 'index']);
+
+
 Route::get('/aluno/{id}/aulas', [AulasController::class, 'aulasDoAluno']);
 
 //Route::get('/user', function (Request $request) {

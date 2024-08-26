@@ -1,5 +1,4 @@
 <?php
-
 namespace Database\Seeders;
 
 use App\Models\Aula;
@@ -9,7 +8,6 @@ use App\Models\Turma;
 use Illuminate\Database\Seeder;
 use App\Models\Usuario;
 use Hash;
-
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,12 +31,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Patricia Agustin',
             'email' => 'patricia@inf.ufpel.edu.br',
         ]);
+
         // Criando 1 aluno
         $aluno = Usuario::factory()->aluno()->create([
             'name' => 'Aluno User',
             'email' => 'aluno@example.com',
         ]);
 
+        // Criando disciplinas
         $FIA = Disciplina::create([
             'nome' => 'Fundamentos de IA',
             'codigo' => 2300099,
@@ -51,7 +51,8 @@ class DatabaseSeeder extends Seeder
             'carga_horaria' => 2,
         ]);
 
-        Turma::create([
+        // Criando turmas
+        $turmaFIA = Turma::create([
             'nome' => 'T1',
             'disciplina_id' => $FIA->id,
             'professor_id' => $ferrugem->id,
@@ -59,7 +60,7 @@ class DatabaseSeeder extends Seeder
             'data_fim' => now()->addMonths(3)
         ]);
 
-        Turma::create([
+        $turmaTECIII = Turma::create([
             'nome' => 'T1',
             'disciplina_id' => $TECIII->id,
             'professor_id' => $patricia->id,
@@ -67,18 +68,64 @@ class DatabaseSeeder extends Seeder
             'data_fim' => now()->addMonths(3),
         ]);
 
-        // Cadastrando o aluno na turma FIA
+        // Cadastrando o aluno nas turmas
         Matricula::factory()->create([
             'usuario_id' => $aluno->id,
             'matricula' => $aluno->matricula,
-            'turma_id' => $FIA->id,
+            'turma_id' => $turmaFIA->id,
         ]);
 
-        // Cadastrando o aluno na turma TECIII
         Matricula::factory()->create([
             'usuario_id' => $aluno->id,
             'matricula' => $aluno->matricula,
-            'turma_id' => $TECIII->id,
+            'turma_id' => $turmaTECIII->id,
         ]);
+
+        // Adicionando aulas para a turma FIA
+        Aula::create([
+            'turma_id' => $turmaFIA->id,
+            'dia_da_semana' => 'segunda',
+            'horario' => '08:00:00',
+            'sala' => '101',
+            'campus' => 'Centro',
+        ]);
+
+        Aula::create([
+            'turma_id' => $turmaFIA->id,
+            'dia_da_semana' => 'quarta',
+            'horario' => '10:00:00',
+            'sala' => '102',
+            'campus' => 'Centro',
+        ]);
+
+        // Adicionando aulas para a turma TECIII
+        Aula::create([
+            'turma_id' => $turmaTECIII->id,
+            'dia_da_semana' => 'terça',
+            'horario' => '14:00:00',
+            'sala' => '201',
+            'campus' => 'Norte',
+        ]);
+
+        Aula::create([
+            'turma_id' => $turmaTECIII->id,
+            'dia_da_semana' => 'quinta',
+            'horario' => '16:00:00',
+            'sala' => '202',
+            'campus' => 'Norte',
+        ]);
+
+        $turmaFIA->load('aulas');
+        $turmaTECIII->load('aulas');
+
+        // Associe o aluno às aulas da turma FIA
+        foreach ($turmaFIA->aulas as $aula) {
+            $aula->alunos()->attach($aluno->id);
+        }
+
+        // Associe o aluno às aulas da turma TECIII
+        foreach ($turmaTECIII->aulas as $aula) {
+            $aula->alunos()->attach($aluno->id);
+        }
     }
 }
