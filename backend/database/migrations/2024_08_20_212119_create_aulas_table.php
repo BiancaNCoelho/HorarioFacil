@@ -15,8 +15,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('turma_id');
             $table->foreign('turma_id')->references('id')->on('turmas')->onUpdate('cascade')->onDelete('cascade');
+            $table->boolean('cancelada')->default(false);
             $table->enum('dia_da_semana', ['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo']);
-            $table->time('horario');
+            $table->enum('horario', ['08:00','10:00','13:30','15:10','16:50']);
             $table->string('sala');
             $table->string('campus');
             $table->string('local')->nullable();

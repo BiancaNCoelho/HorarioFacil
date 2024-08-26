@@ -85,7 +85,7 @@ class DatabaseSeeder extends Seeder
         Aula::create([
             'turma_id' => $turmaFIA->id,
             'dia_da_semana' => 'segunda',
-            'horario' => '08:00:00',
+            'horario' => '08:00',
             'sala' => '101',
             'campus' => 'Centro',
         ]);
@@ -93,7 +93,7 @@ class DatabaseSeeder extends Seeder
         Aula::create([
             'turma_id' => $turmaFIA->id,
             'dia_da_semana' => 'quarta',
-            'horario' => '10:00:00',
+            'horario' => '10:00',
             'sala' => '102',
             'campus' => 'Centro',
         ]);
@@ -102,7 +102,7 @@ class DatabaseSeeder extends Seeder
         Aula::create([
             'turma_id' => $turmaTECIII->id,
             'dia_da_semana' => 'terça',
-            'horario' => '14:00:00',
+            'horario' => '15:10',
             'sala' => '201',
             'campus' => 'Norte',
         ]);
@@ -110,7 +110,7 @@ class DatabaseSeeder extends Seeder
         Aula::create([
             'turma_id' => $turmaTECIII->id,
             'dia_da_semana' => 'quinta',
-            'horario' => '16:00:00',
+            'horario' => '15:10',
             'sala' => '202',
             'campus' => 'Norte',
         ]);

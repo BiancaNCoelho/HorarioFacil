@@ -3,6 +3,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Usuario;
 use Illuminate\Http\Request;
+use App\Models\Turma;
+use App\Models\Notificacao;
+use App\Models\Aula;
 
 class AulasController extends Controller
 {
@@ -33,5 +36,64 @@ class AulasController extends Controller
 
         // Retorna as aulas em formato JSON
         return response()->json($aulas);
+    }
+
+    public function adicionarAula(Request $request, $turmaId)
+    {
+        // Valida os dados da requisição
+        $request->validate([
+            'dia_da_semana' => 'required|in:segunda,terça,quarta,quinta,sexta,sábado,domingo',
+            'horario' => 'required|date_format:H:i',
+            'sala' => 'required|string',
+            'campus' => 'required|string',
+            'local' => 'nullable|string',
+        ]);
+
+        // Busca a turma pelo ID
+        $turma = Turma::findOrFail($turmaId);
+
+        // Verifica se o usuário autenticado é o professor da turma
+        //if (auth()->user()->id !== $turma->professor_id) {
+        //    return response()->json(['message' => 'Ação não autorizada.'], 403);
+        //}
+
+        // Cria a nova aula associada à turma
+        $aula = $turma->aulas()->create($request->all());
+
+        // Retorna a resposta com a nova aula criada
+        return response()->json([
+            'message' => 'Aula adicionada com sucesso!',
+            'aula' => $aula,
+        ], 201);
+    }
+
+    public function cancelarAula(Request $request)
+    {
+        $request->validate([
+            'aula_id' => 'required|integer|exists:aulas,id',
+        ]);
+
+        $aula = Aula::findOrFail($request->aula_id);
+
+        $aula->update(['cancelada' => true]);
+
+        // Cancelar a aula
+        // Marcar como cancelada em um campo ou remover a entrada específica de um registro cíclico
+        // (lógica a ser definida com base no sistema específico)
+
+        // Notificar alunos
+        //$alunos = $aula->turma->alunos;
+        //foreach ($alunos as $aluno) {
+        //    Notificacao::create([
+        //        'texto' => "A aula de {$aula->turma->nome} foi cancelada",
+        //        'tipo_notificacao' => 'cancelamento',
+        //        'data' => now()->toDateString(),
+        //        'hora' => now()->toTimeString(),
+        //        'is_read' => false,
+        //        'usuario_id' => $aluno->id,
+        //    ]);
+        //}
+
+        return response()->json(['message' => 'Aula cancelada com sucesso!'], 200);
     }
 }
