@@ -13,11 +13,11 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/usuarios', [AdminController::class, 'index']); // OK
 
-//Route::post('/turmas/{turma}/aulas', [AulasController::class, 'adicionarAula']);
+//Route::middleware('auth:sanctum')->post('/aula/nova/{$turmaId}', [AulasController::class, 'adicionarAula2']); // FALTA ARRUMAR
 
-Route::middleware('auth-sanctum')->post('/aula/cancelar/{aulaId?}', [ProfessorController::class, 'cancelarAula2']); //para o professor cancelar a aula
+Route::middleware('auth:sanctum')->post('/aula/cancelar/{aulaId?}', [ProfessorController::class, 'cancelarAula']); // OK
 
-Route::middleware('auth:sanctum')->get('/minhasturmas', [ProfessorController::class, 'minhasTurmas']); // OK
+Route::middleware('auth:sanctum')->get('/turma', [ProfessorController::class, 'minhasTurmas']); // OK
 
 Route::middleware('auth:sanctum')->get('/aula/{turmaId?}', [ProfessorController::class, 'aulasDaTurma']); // OK
 

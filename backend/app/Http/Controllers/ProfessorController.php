@@ -25,6 +25,7 @@ class ProfessorController extends Controller
         return response()->json($turmas);
     }
 
+    // Método para mostrar as turmas do professor, baseado no ID de turma
     public function aulasDaTurma(Request $request, $turmaId)
     {
 
@@ -48,49 +49,33 @@ class ProfessorController extends Controller
         return response()->json($turma->aulas);
 
     }
-
+    
+    // Método para o professor cancelar a aula, baseado no ID da aula
     public function cancelarAula(Request $request, $aulaId)
     {
-        // Verifica se o tipo de usuário é professor
-        if ($request->user()->tipo_usuario !== 'professor') {
+        $tipo_de_usuario = $request->user()->tipo_usuario;
+        $id_usuario = $request->user()->id;
+
+        if ($tipo_de_usuario == 'aluno') {
             return response()->json(['message' => 'Acesso não autorizado.'], 403);
         }
 
-        // Obtém o ID do professor autenticado
-        $professorId = $request->user()->id;
+        // SE O ADMINISTRADOR CANCELAR É PARA REGISTRAR NUMA TABELA, PARA NOTIFICAR O PROFESSOR
+        //if ($tipo_de_usuario == 'administrador'){
+        //return response()->json(['message' => 'Aula cancelada.'], 200);
+        //}
 
-        // Busca as turmas onde o professor é o responsável
-        $turmas = Turma::where('professor_id', $professorId)->get();
-
-        // Verifica se a aula pertence ao professor
-        $aula = $turmas->flatMap(function ($turma) {
-            return $turma->aulas;
-        })->find($aulaId);
+        $aula = Aula::where('id', $aulaId)
+            ->whereHas('turma', function ($query) use ($request) {
+                $query->where('professor_id', $request->user()->id);
+            })
+            ->first();
 
         if (!$aula) {
-            return response()->json(['message' => 'Acesso não autorizado.'], 403);
+            return response()->json(['message' => 'Aula não encontrada ou você não tem permissão para cancelá-la.'], 404);
         }
 
-        // Cancela a aula
-        $aula->delete();
-
-        // Retorna a mensagem de sucesso
-        return response()->json(['message' => 'Aula cancelada com sucesso.']);
-    }
-    public function cancelarAula2(Request $request)
-    {
-        // Verifica se o tipo de usuário é professor
-        if ($request->user()->tipo_usuario !== 'professor') {
-            return response()->json(['message' => 'Acesso não autorizado.'], 403);
-        }
-
-        $professor_id = $request->user()->id;
-        $request->validate([
-            'aula_id' => 'required|integer|exists:aulas,id',
-        ]);
-
-        $aula = Aula::findOrFail($request->aula_id);
-
+        // Marca a aula como cancelada
         $aula->update(['cancelada' => true]);
 
         return response()->json(['message' => 'Aula cancelada com sucesso!'], 200);
