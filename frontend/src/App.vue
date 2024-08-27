@@ -5,7 +5,7 @@
       -->
       
 <template>
-  <div id="app">
+  <div id="app" class="app-container">
 
     <section class="header">
     <b-navbar>
@@ -59,18 +59,19 @@
     </section>
     
     <!-- Footer -->
-    <section v-if="showFooter" class="footer">
-
-      <footer class="footer">
-        <div class="content has-text-centered">
-          <p>
-            <strong>Horário Fácil</strong> por Nomes.
-          </p>
-        </div>
-      </footer>
-    
-    </section>
- 
+    <footer v-if="showFooter" class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Horário Fácil</strong> &copy; {{ new Date().getFullYear() }}. Todos os direitos reservados.
+        </p>
+        <p>
+          <a href="https://github.com/BiancaNCoelho/HorarioFacil" target="_blank" class="botao-footer">GitHub do Projeto</a>
+        </p>
+        <p>
+          <strong>Contato:</strong> <a href="mailto:contato@exemplo.com" class="botao-footer">contato@exemplo.com</a>
+        </p>
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -89,6 +90,35 @@ export default {
 </script>
 
 <style lang="css" scooped>
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.footer {
+  color: white;
+  background-color: #0d1117 !important;
+  font-size: 0.9vw;
+  text-align: center;
+  margin-top: auto;
+  width: 100%;
+  padding: 5%;
+}
+
+.footer strong {
+  color: white; 
+}
+
+.botao-footer, .botao-footer:hover {
+  color: #007bff;
+}
+
+.botao-footer:hover {
+  text-decoration: underline;
+  color: #007bff;
+}
+
 .navbar-item-spacing {
   margin-left: 0.7vw;
 }

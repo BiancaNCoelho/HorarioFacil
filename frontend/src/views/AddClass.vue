@@ -274,12 +274,11 @@ select {
 /* Estilos para o rodapé */
 footer {
   border-top: 1px solid #000;
-  padding: 10px;
+  padding: 3vw;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 2vw;
 }
 
-/* Estilos para os links no rodapé */
 footer a {
   margin: 0 10px;
   color: black;
@@ -287,8 +286,7 @@ footer a {
   font-weight: bold;
 }
 
-/* Estilos para os links no rodapé ao passar o mouse */
 footer a:hover {
-  color: orange;
+  color: purple;
 }
 </style>

@@ -276,9 +276,9 @@ select {
 /* Estilos para o rodapé da página */
 footer {
   border-top: 1px solid #000;
-  padding: 10px;
+  padding: 3vw;
   text-align: center;
-  margin-top: 40px;
+  margin-top: 2vw;
 }
 
 footer a {
@@ -289,6 +289,6 @@ footer a {
 }
 
 footer a:hover {
-  color: orange;
+  color: purple;
 }
 </style>
