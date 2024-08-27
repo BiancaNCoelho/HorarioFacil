@@ -3,16 +3,16 @@
     <div class="container">
       <!-- Cabeçalho com título e botão de voltar -->
       <div class="buttons">
-        <h1 class="title">Adicionar Aula</h1>
+        <h1 class="add-class"><strong>Adicionar Aula</strong></h1>
         <button class="btn-back" @click="goBack">&#60; Voltar</button>
       </div>
       <!-- Formulário para adicionar uma aula -->
       <form @submit.prevent="saveClass">
         <!-- Campo de seleção de matéria -->
         <div class="form-group">
-          <label for="subject-name">Subject Name</label>
+          <label for="subject-name">Disciplina</label>
           <select v-model="subjectName" id="subject-name">
-            <option value="">Selecionar Matéria</option>
+            <option value="">Selecionar Disciplina</option>
             <option value="ap">A&P</option>
             <option value="logica">Lógica</option>
             <option value="fia">FIA</option>
@@ -30,8 +30,9 @@
           <label for="campus">Campus</label>
           <select v-model="campus" id="campus">
             <option value="">Selecionar Campus</option>
-            <option value="campus1">Campus 1</option>
-            <option value="campus2">Campus 2</option>
+            <option value="campus1">Campus Anglo</option>
+            <option value="campus2">Campus Capão do Leão</option>
+            <option value="campus3">Centro de Artes</option>
           </select>
         </div>
 
@@ -204,6 +205,10 @@ body {
   max-width: 800px;
   margin: 0 auto;
   padding: 20px;
+}
+
+.add-class {
+  font-size: 20px;
 }
 
 /* Estilos para o cabeçalho e botões */

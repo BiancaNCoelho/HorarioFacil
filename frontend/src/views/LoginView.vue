@@ -11,12 +11,12 @@
 
             <!-- CPF field-->
             <b-field label="CPF" horizontal>
-              <b-input v-model="cpf" placeholder="CPF"></b-input>
+              <b-input v-model="cpf" placeholder="CPF" maxlength="11"></b-input>
             </b-field>
             
             <!-- Password field-->
             <b-field label="Senha" horizontal>
-              <b-input type="senha" password-reveal placeholder="senha"></b-input>
+              <b-input type="password" password-reveal class="password-input" placeholder="Senha"></b-input>
             </b-field>
             
             <b-button type="is-primary">
@@ -32,7 +32,14 @@
 </template>
 
 <script>
-// Add your script code here
+export default {
+  name: 'LoginView',
+  data() {
+    return {
+      cpf: ''
+    };
+  },
+}
 </script>
 
 <style lang="css" scoped>
@@ -48,5 +55,10 @@
   margin-top: 10px;
   margin-bottom: 5px; /* Add this line to add space between the input fields and the button */
   justify-content: center; /* Add this line to center the button horizontally */
+}
+
+.password-input .icon.is-right .mdi-eye,
+.password-input .icon.is-right .mdi-eye-off {
+  color: purple;
 }
 </style>

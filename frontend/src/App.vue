@@ -19,23 +19,23 @@
       </template>
       <template #start>
         <!-- link router para a página Home -->
-        <b-navbar-item tag="router-link" :to="{ name: 'home' }">
-          Home
+        <b-navbar-item tag="router-link" :to="{ name: 'home' }" class="navbar-item-spacing">
+          <strong>Home</strong>
         </b-navbar-item>
 
         <!-- link router para a página AddAula -->
-        <b-navbar-item tag="router-link" :to="{ name: 'add' }">
-          AddClass
+        <b-navbar-item tag="router-link" :to="{ name: 'add' }" class="navbar-item-spacing">
+          <strong>Adicionar Aula</strong>
         </b-navbar-item>
 
         <!-- link router para a página EditAula -->
-        <b-navbar-item tag="router-link" :to="{ name: 'edit' }">
-          EditClass
+        <b-navbar-item tag="router-link" :to="{ name: 'edit' }" class="navbar-item-spacing">
+          <strong>Editar Aula</strong>
         </b-navbar-item>
 
         <!-- link router para a página About -->
-        <b-navbar-item tag="router-link" :to="{ name: 'about' }">
-          Sobre
+        <b-navbar-item tag="router-link" :to="{ name: 'about' }" class="navbar-item-spacing">
+          <strong>Sobre</strong>
         </b-navbar-item>
 
         <!-- Botoes Sign Up e Login -->
@@ -89,5 +89,7 @@ export default {
 </script>
 
 <style lang="css" scooped>
-
+.navbar-item-spacing {
+  margin-left: 0.7vw;
+}
 </style>

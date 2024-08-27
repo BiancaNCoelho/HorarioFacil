@@ -3,7 +3,7 @@
     <div class="container">
       <div class="buttons">
         <!-- Exibe um texto para edição de aula e um botão para voltar à grade de aulas -->
-        <span class="edit-class">Editar Aula</span>
+        <h1 class="edit-class"><strong>Editar Aula</strong></h1>
         <button @click="goBack">&#60; Voltar para grade</button>
       </div>
       <!-- Formulário para edição de aula, previne o comportamento padrão de submissão ao clicar -->
@@ -12,14 +12,14 @@
           <div class="form-row">
             <div class="form-column">
               <!-- Campo para entrada do nome da aula -->
-              <label for="class-name">Nome da aula</label>
+              <label for="class-name">Nome da Aula</label>
               <input type="text" v-model="className" id="class-name" />
             </div>
             <div class="form-column">
               <!-- Campo para selecionar o nome da matéria -->
-              <label for="subject-name">Subject Name</label>
+              <label for="subject-name">Disciplina</label>
               <select v-model="subjectName" id="subject-name">
-                <option value="">Selecionar Matéria</option>
+                <option value="">Selecionar Disciplina</option>
                 <option value="ap">A&P</option>
                 <option value="logica">Lógica</option>
                 <option value="fia">FIA</option>
@@ -32,12 +32,12 @@
           <div class="form-row">
             <div class="form-column">
               <!-- Campo para entrada do nome do professor -->
-              <label for="teacher-name">Nome do professor</label>
+              <label for="teacher-name">Professor</label>
               <input type="text" v-model="teacherName" id="teacher-name" />
             </div>
             <div class="form-column">
               <!-- Seletor de tempo de início da aula com horas e minutos -->
-              <label for="start-time-hour">Tempo de início</label>
+              <label for="start-time-hour">Horário de Início</label>
               <div class="time-select">
                 <select v-model="startTimeHour" id="start-time-hour">
                   <option v-for="hour in hours" :key="hour" :value="hour">{{ hour }}</option>
@@ -57,13 +57,14 @@
               <label for="campus">Campus</label>
               <select v-model="campus" id="campus">
                 <option value="">Selecionar Campus</option>
-                <option value="campus1">Campus 1</option>
-                <option value="campus2">Campus 2</option>
+                <option value="campus1">Campus Anglo</option>
+                <option value="campus2">Campus Capão do Leão</option>
+                <option value="campus3">Centro de Artes</option>
               </select>
             </div>
             <div class="form-column">
               <!-- Seletor de tempo de fim da aula com horas e minutos -->
-              <label for="end-time-hour">Tempo de fim</label>
+              <label for="end-time-hour">Horário de Finalização</label>
               <div class="time-select">
                 <select v-model="endTimeHour" id="end-time-hour">
                   <option v-for="hour in hours" :key="hour" :value="hour">{{ hour }}</option>
@@ -85,7 +86,7 @@
             </div>
             <div class="form-column">
               <!-- Seletor do dia da semana em que a aula será ministrada -->
-              <label for="weekday">Dia da semana</label>
+              <label for="weekday">Dia da Semana</label>
               <select v-model="weekday" id="weekday">
                 <option value="monday">Segunda-feira</option>
                 <option value="tuesday">Terça-feira</option>
@@ -269,7 +270,7 @@ select {
 /* Estilos para o texto "Editar Aula" */
 .edit-class {
   font-weight: bold; /* Faz o texto em negrito */
-  margin-left: 20px; /* Espaço entre o botão e o texto */
+  font-size: 20px;
 }
 
 /* Estilos para o rodapé da página */

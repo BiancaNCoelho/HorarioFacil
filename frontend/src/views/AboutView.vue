@@ -56,7 +56,7 @@ export default {
   methods: {
       getImgUrl(value) {
         const urls = [
-        'https://thumbs.dreamstime.com/b/homem-cinzento-do-placeholder-da-foto-pessoa-genérica-silhueta-cinzenta-em-um-fundo-branco-144511705.jpg',
+        'https://i.postimg.cc/8cPnpzrK/alejandro.png',
         'https://i.postimg.cc/xdCTmqxP/BIANCA.png',
         'https://i.postimg.cc/VNVsW12P/imagem-2024-08-17-173107003.png',
         'https://thumbs.dreamstime.com/b/homem-cinzento-do-placeholder-da-foto-pessoa-genérica-silhueta-cinzenta-em-um-fundo-branco-144511705.jpg',
