@@ -53,7 +53,7 @@ class DatabaseSeeder extends Seeder
 
         // Criando turmas
         $turmaFIA = Turma::create([
-            'nome' => 'T1',
+            'nome' => 'FIA 2024-2',
             'disciplina_id' => $FIA->id,
             'professor_id' => $ferrugem->id,
             'data_inicio' => now()->subMonths(3),
@@ -61,7 +61,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $turmaTECIII = Turma::create([
-            'nome' => 'T1',
+            'nome' => 'TECIII 2024-2',
             'disciplina_id' => $TECIII->id,
             'professor_id' => $patricia->id,
             'data_inicio' => now()->subMonths(3),
