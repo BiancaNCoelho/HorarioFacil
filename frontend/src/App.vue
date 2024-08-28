@@ -24,18 +24,23 @@
         </b-navbar-item>
 
         <!-- link router para a página AddAula -->
-        <b-navbar-item tag="router-link" :to="{ name: 'add' }" class="navbar-item-spacing">
+        <!--<b-navbar-item tag="router-link" :to="{ name: 'add' }" class="navbar-item-spacing">
           <strong>Adicionar Aula</strong>
-        </b-navbar-item>
-
-        <!-- link router para a página EditAula -->
-        <b-navbar-item tag="router-link" :to="{ name: 'edit' }" class="navbar-item-spacing">
-          <strong>Editar Aula</strong>
-        </b-navbar-item>
+        </b-navbar-item>--!>
 
         <!-- link router para a página About -->
         <b-navbar-item tag="router-link" :to="{ name: 'about' }" class="navbar-item-spacing">
           <strong>Sobre</strong>
+        </b-navbar-item>
+
+        <!-- link router para a página Grade -->
+        <b-navbar-item tag="router-link" :to="{ name: 'grade' }" class="navbar-item-spacing">
+          <strong>Grade de Horários</strong>
+        </b-navbar-item>
+
+        <!-- link router para a página Turmas -->
+        <b-navbar-item tag="router-link" :to="{ name: 'minhasturmas' }" class="navbar-item-spacing">
+          <strong>Turmas</strong>
         </b-navbar-item>
 
         <!-- Botoes Sign Up e Login -->

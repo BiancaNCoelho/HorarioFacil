@@ -12,45 +12,23 @@
           <div class="form-row">
             <div class="form-column">
               <!-- Campo para selecionar o nome da matéria -->
-              <label for="subject-name">Disciplina</label>
-              <select v-model="subjectName" id="subject-name">
-                <option value="">Selecionar Disciplina</option>
-                <option value="ap">A&P</option>
-                <option value="logica">Lógica</option>
-                <option value="fia">FIA</option>
-              </select>
+
             </div>
             <div class="form-column">
-              <!-- Campo para entrada do nome do professor -->
-              <label for="teacher-name">Professor</label>
-              <input type="text" v-model="teacherName" id="teacher-name" />
+
             </div>
-          </div>
+          </div> <!-- Campo para entrada do nome do professor -->
         </div>
 
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
               <!-- Seletor de tempo de início da aula com horas e minutos -->
-              <label for="start-time-hour">Horário de Início</label>
-              <div class="time-select">
-                <select v-model="startTimeHour" id="start-time-hour">
-                  <option v-for="hour in hours" :key="hour" :value="hour">{{ hour }}</option>
-                </select>
-                <select v-model="startTimeMinute" id="start-time-minute">
-                  <option v-for="minute in minutes" :key="minute" :value="minute">{{ minute }}</option>
-                </select>
-              </div>
             </div>
             <div class="form-column">
               <!-- Seletor do campus onde a aula será ministrada -->
               <label for="campus">Campus</label>
-              <select v-model="campus" id="campus">
-                <option value="">Selecionar Campus</option>
-                <option value="campus1">Campus Anglo</option>
-                <option value="campus2">Campus Capão do Leão</option>
-                <option value="campus3">Centro de Artes</option>
-              </select>
+              <input type="text" v-model="campus" id="campus" />
             </div>
           </div>
         </div>
@@ -58,29 +36,19 @@
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
-              <!-- Seletor de tempo de fim da aula com horas e minutos -->
-              <label for="end-time-hour">Horário de Finalização</label>
-              <div class="time-select">
-                <select v-model="endTimeHour" id="end-time-hour">
-                  <option v-for="hour in hours" :key="hour" :value="hour">{{ hour }}</option>
-                </select>
-                <select v-model="endTimeMinute" id="end-time-minute">
-                  <option v-for="minute in minutes" :key="minute" :value="minute">{{ minute }}</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-column">
               <!-- Seletor do dia da semana em que a aula será ministrada -->
-              <label for="weekday">Dia da Semana</label>
+              <label for="dia_da_semana">Dia da Semana</label>
               <select v-model="weekday" id="weekday">
-                <option value="monday">Segunda-feira</option>
-                <option value="tuesday">Terça-feira</option>
-                <option value="wednesday">Quarta-feira</option>
-                <option value="thursday">Quinta-feira</option>
-                <option value="friday">Sexta-feira</option>
-                <option value="saturday">Sábado</option>
+                <option value="segunda">Segunda</option>
+                <option value="terca">Terça</option>
+                <option value="quarta">Quarta</option>
+                <option value="quinta">Quinta</option>
+                <option value="sexta">Sexta</option>
+                <option value="sabado">Sábado</option>
               </select>
             </div>
+          </div>
+          <div>
           </div>
         </div>
 
@@ -116,29 +84,31 @@ export default {
   data() {
     return {
       // Variáveis reativas para armazenar os dados do formulário
-      subjectName: '',
-      teacherName: '',
-      startTimeHour: '',
-      startTimeMinute: '',
+      idTurma: this.$route.params.id,
+      nome: '',
+      horario: '',
+      sala: '',
       campus: '',
-      endTimeHour: '',
-      endTimeMinute: '',
-      classroom: '',
-      weekday: '',
-      // Array de horas (8h a 22h) para popular os selects de hora
-      hours: Array.from({ length: 15 }, (_, i) => i + 8).map(hour => (hour < 10 ? '0' + hour : hour)),
-      // Array de minutos (0 a 59) para popular os selects de minuto
-      minutes: [...Array(60).keys()].map(i => (i < 10 ? '0' + i : i))
+      local: '',
+      dia_da_semana: '',
     };
   },
   methods: {
     // Navega de volta para a página da grade de aulas
     goBack() {
-      this.$router.push('/grade');
+      this.$router.push('/minhasturmas');
     },
     // Exibe um alerta ao salvar a aula
     saveClass() {
-      alert('Aula salva com sucesso!');
+      axios.post(`/api/aula/${this.idTurma}`, {
+        nome: this.nome,
+        hora_inicio: this.startTimeHour + ':' + this.startTimeMinute,
+        campus: this.campus,
+        local: this.local,
+        dia_da_semana: this.dia_da_semana,
+        hora_fim: this.endTimeHour + ':' + this.endTimeMinute,
+        sala: this.classroom
+      })
     },
     // Exibe uma confirmação antes de deletar a aula e, em caso afirmativo, exibe um alerta de deleção
     deleteClass() {
@@ -151,7 +121,7 @@ export default {
       if (confirm('Deseja cancelar as alterações?')) {
         this.$router.push('/');
       }
-    }
+    },
   }
 };
 </script>
@@ -160,7 +130,8 @@ export default {
 /* Estilos globais para o corpo da página */
 body {
   font-family: Arial, sans-serif;
-  font-size: 14px; /* Diminui a fonte de toda a página */
+  font-size: 14px;
+  /* Diminui a fonte de toda a página */
 }
 
 .container {
@@ -217,14 +188,16 @@ header nav a:hover {
 label {
   margin-bottom: 5px;
   font-weight: bold;
-  font-size: 14px; /* Diminui a fonte das labels */
+  font-size: 14px;
+  /* Diminui a fonte das labels */
 }
 
 /* Estilos para os campos de entrada e seletores */
 input,
 select {
   padding: 10px;
-  font-size: 14px; /* Diminui a fonte dos inputs e selects */
+  font-size: 14px;
+  /* Diminui a fonte dos inputs e selects */
   width: 100%;
   box-sizing: border-box;
   border: 1px solid #000;
@@ -243,18 +216,21 @@ select {
 /* Estilos para o conjunto de botões */
 .buttons {
   display: flex;
-  align-items: center; /* Alinha verticalmente os itens */
+  align-items: center;
+  /* Alinha verticalmente os itens */
   justify-content: space-between;
   margin-top: 20px;
 }
 
 .buttons button {
   padding: 10px 20px;
-  font-size: 14px; /* Diminui a fonte dos botões */
+  font-size: 14px;
+  /* Diminui a fonte dos botões */
   border: 1px solid #000;
   background-color: white;
   cursor: pointer;
-  border-radius: 8px; /* Adiciona bordas arredondadas aos botões */
+  border-radius: 8px;
+  /* Adiciona bordas arredondadas aos botões */
 }
 
 .buttons button:hover {
@@ -263,7 +239,8 @@ select {
 
 /* Estilos para o texto "Editar Aula" */
 .edit-class {
-  font-weight: bold; /* Faz o texto em negrito */
+  font-weight: bold;
+  /* Faz o texto em negrito */
   font-size: 20px;
 }
 

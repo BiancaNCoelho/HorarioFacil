@@ -40,6 +40,21 @@ const routes = [
       path: '/edit',
       name: 'edit',
       component: () => import('../views/EditClass.vue')
+    },
+    {
+      path: '/grade',
+      name: 'grade',
+      component: () => import('../views/GradeView.vue')
+    },
+    {
+      path: '/minhasturmas',
+      name: 'minhasturmas',
+      component: () => import('../views/MinhasTurmasView.vue')
+    },
+    {
+      path: '/aulas',
+      name: 'aulas',
+      component: () => import('../views/AulaView.vue')
     }
   ];
 
@@ -49,6 +64,19 @@ const router = new VueRouter({
      return { x: 0, y: 0 };
    },
 });
-  
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    const token = localStorage.getItem('token');
+    console.log(token);
+    if (!token) {
+      next({ name: 'login' });
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
+});
 
 export default router

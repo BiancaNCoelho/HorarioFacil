@@ -1,10 +1,11 @@
-import { fileURLToPath, URL } from 'node:url'
+import { fileURLToPath, URL } from 'node:url';
+import { defineConfig } from 'vite';
+import legacy from '@vitejs/plugin-legacy';
+import vue2 from '@vitejs/plugin-vue2';
+import dotenv from 'dotenv';
 
-import { defineConfig } from 'vite'
-import legacy from '@vitejs/plugin-legacy'
-import vue2 from '@vitejs/plugin-vue2'
+dotenv.config();
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     vue2(),
@@ -13,9 +14,16 @@ export default defineConfig({
       additionalLegacyPolyfills: ['regenerator-runtime/runtime']
     })
   ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8000',
+      }
+    }
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   }
-})
+});
