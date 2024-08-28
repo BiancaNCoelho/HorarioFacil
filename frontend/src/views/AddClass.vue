@@ -44,7 +44,7 @@
 
         <!-- Campos para selecionar o horário de início -->
         <div class="form-group">
-          <label for="start-time">Tempo de início</label>
+          <label for="start-time">Horário de Início</label>
           <div class="time-select">
             <select v-model="startHour" id="start-hour">
               <!-- Gera opções de horas (de 8 a 22) -->
@@ -59,7 +59,7 @@
 
         <!-- Campos para selecionar o horário de término -->
         <div class="form-group">
-          <label for="end-time">Tempo de fim</label>
+          <label for="end-time">Horário de Finalização</label>
           <div class="time-select">
             <select v-model="endHour" id="end-hour">
               <!-- Gera opções de horas (de 8 a 22) -->
@@ -135,7 +135,7 @@ export default {
 
   // Verificação do nome do Professor
   if (!/^[A-Za-zÀ-ÖØ-öø-ÿ\s]{2,}$/.test(this.teacherName)) {
-    alert("O nome do professor deve conter apenas letras (incluindo acentuação) e espaços, com pelo menos duas letras.");
+    alert("Digite um nome válido.");
     return;
   }
 
@@ -147,18 +147,18 @@ export default {
 
   // Verificação da Sala
   if (!/^[0-9]+$/.test(this.classroom)) {
-    alert("O número da sala deve conter apenas números e ter pelo menos um dígito.");
+    alert("O número da sala deve conter apenas números.");
     return;
   }
 
-  // Verificação da seleção de horas e minutos para Tempo de Início e Tempo de Fim
+  // Verificação da seleção de horas e minutos para Horário de Início e Horário de Finalização
   if (!this.startHour || !this.startMinute) {
-    alert("Por favor, selecione a hora e os minutos para o Tempo de Início.");
+    alert("Por favor, selecione a hora e os minutos para o Horário de Início.");
     return;
   }
 
   if (!this.endHour || !this.endMinute) {
-    alert("Por favor, selecione a hora e os minutos para o Tempo de Fim.");
+    alert("Por favor, selecione a hora e os minutos para o Horário de Finalização.");
     return;
   }
 
@@ -166,17 +166,17 @@ export default {
   const endTime = parseInt(this.endHour) * 60 + parseInt(this.endMinute);
 
   if (startTime === endTime) {
-    alert("Tempo de início e Tempo de fim não podem ser iguais.");
+    alert("Horário de início e Horário de Finalização não podem ser iguais.");
     return;
   }
 
   if (parseInt(this.startHour) === parseInt(this.endHour) && parseInt(this.endMinute) <= parseInt(this.startMinute)) {
-    alert("Os minutos de Tempo de fim devem ser maiores que os minutos de Tempo de início.");
+    alert("Os minutos de Horário de Finalização devem ser maiores que os minutos de Horário de início.");
     return;
   }
 
   if (parseInt(this.startHour) > parseInt(this.endHour)) {
-    alert("A hora de Tempo de início não pode ser maior que a hora de Tempo de fim.");
+    alert("A hora de Horário de Início não pode ser maior que a hora de Horário de Finalização.");
     return;
   }
 

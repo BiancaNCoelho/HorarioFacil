@@ -11,11 +11,6 @@
         <div class="form-group">
           <div class="form-row">
             <div class="form-column">
-              <!-- Campo para entrada do nome da aula -->
-              <label for="class-name">Nome da Aula</label>
-              <input type="text" v-model="className" id="class-name" />
-            </div>
-            <div class="form-column">
               <!-- Campo para selecionar o nome da matéria -->
               <label for="subject-name">Disciplina</label>
               <select v-model="subjectName" id="subject-name">
@@ -25,16 +20,16 @@
                 <option value="fia">FIA</option>
               </select>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="form-row">
             <div class="form-column">
               <!-- Campo para entrada do nome do professor -->
               <label for="teacher-name">Professor</label>
               <input type="text" v-model="teacherName" id="teacher-name" />
             </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row">
             <div class="form-column">
               <!-- Seletor de tempo de início da aula com horas e minutos -->
               <label for="start-time-hour">Horário de Início</label>
@@ -47,11 +42,6 @@
                 </select>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="form-row">
             <div class="form-column">
               <!-- Seletor do campus onde a aula será ministrada -->
               <label for="campus">Campus</label>
@@ -62,6 +52,11 @@
                 <option value="campus3">Centro de Artes</option>
               </select>
             </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row">
             <div class="form-column">
               <!-- Seletor de tempo de fim da aula com horas e minutos -->
               <label for="end-time-hour">Horário de Finalização</label>
@@ -74,16 +69,6 @@
                 </select>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div class="form-group">
-          <div class="form-row">
-            <div class="form-column">
-              <!-- Campo para entrada do nome da sala onde a aula será ministrada -->
-              <label for="classroom">Sala</label>
-              <input type="text" v-model="classroom" id="classroom" />
-            </div>
             <div class="form-column">
               <!-- Seletor do dia da semana em que a aula será ministrada -->
               <label for="weekday">Dia da Semana</label>
@@ -95,6 +80,16 @@
                 <option value="friday">Sexta-feira</option>
                 <option value="saturday">Sábado</option>
               </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-row">
+            <div class="form-column">
+              <!-- Campo para entrada do nome da sala onde a aula será ministrada -->
+              <label for="classroom">Sala</label>
+              <input type="text" v-model="classroom" id="classroom" />
             </div>
           </div>
         </div>
@@ -121,7 +116,6 @@ export default {
   data() {
     return {
       // Variáveis reativas para armazenar os dados do formulário
-      className: '',
       subjectName: '',
       teacherName: '',
       startTimeHour: '',
