@@ -83,6 +83,7 @@ class DatabaseSeeder extends Seeder
 
         // Adicionando aulas para a turma FIA
         Aula::create([
+            'nome' => $FIA->nome,
             'turma_id' => $turmaFIA->id,
             'dia_da_semana' => 'segunda',
             'horario' => '08:00',
@@ -91,6 +92,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Aula::create([
+            'nome' => $FIA->nome,
             'turma_id' => $turmaFIA->id,
             'dia_da_semana' => 'quarta',
             'horario' => '10:00',
@@ -100,6 +102,7 @@ class DatabaseSeeder extends Seeder
 
         // Adicionando aulas para a turma TECIII
         Aula::create([
+            'nome'=> $TECIII->nome,
             'turma_id' => $turmaTECIII->id,
             'dia_da_semana' => 'terça',
             'horario' => '15:10',
@@ -108,6 +111,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Aula::create([
+            'nome'=> $TECIII->nome,
             'turma_id' => $turmaTECIII->id,
             'dia_da_semana' => 'quinta',
             'horario' => '15:10',

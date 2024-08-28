@@ -80,4 +80,41 @@ class ProfessorController extends Controller
 
         return response()->json(['message' => 'Aula cancelada com sucesso!'], 200);
     }
+
+    public function adicionarAula(Request $request)
+    {
+        // Valida os dados da requisição
+        $request->validate([
+            'turma_id' => 'required|integer|exists:turmas,id',
+            'dia_da_semana' => 'required|string|in:segunda,terça,quarta,quinta,sexta,sábado,domingo',
+            'horario' => 'required|date_format:H:i',
+            'sala' => 'required|string',
+            'campus' => 'required|string',
+            'local' => 'nullable|string',
+        ]);
+
+        // Obtém o ID do professor autenticado
+        $professorId = $request->user()->id;
+
+        // Verifica se o professor é responsável pela turma
+        $turma = Turma::where('id', $request->turma_id)
+                      ->where('professor_id', $professorId)
+                      ->first();
+
+        if (!$turma) {
+            return response()->json(['message' => 'Você não tem permissão para adicionar aulas a essa turma.'], 403);
+        }
+
+        // Cria a aula para a turma
+        $aula = Aula::create([
+            'turma_id' => $turma->id,
+            'dia_da_semana' => $request->dia_da_semana,
+            'horario' => $request->horario,
+            'sala' => $request->sala,
+            'campus' => $request->campus,
+            'local' => $request->local,
+        ]);
+
+        return response()->json(['message' => 'Aula adicionada com sucesso!', 'aula' => $aula], 201);
+    }
 }

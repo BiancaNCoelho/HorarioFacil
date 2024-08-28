@@ -13,6 +13,7 @@ class AulaFactory extends Factory
     public function definition(): array
     {
         return [
+            'nome' => $this->faker->word(),
             'turma_id' => Turma::factory(), // Cria uma nova Turma se nenhuma for especificada
             'dia_da_semana' => $this->faker->randomElement(['segunda', 'terça', 'quarta', 'quinta', 'sexta', 'sábado', 'domingo']),
             'horario' => $this->faker->time(),

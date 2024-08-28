@@ -13,7 +13,7 @@ Route::post('/login', [AuthController::class, 'login']);
 
 Route::middleware('auth:sanctum')->get('/usuarios', [AdminController::class, 'index']); // OK
 
-//Route::middleware('auth:sanctum')->post('/aula/nova/{$turmaId}', [AulasController::class, 'adicionarAula2']); // FALTA ARRUMAR
+Route::middleware('auth:sanctum')->post('/aula/nova/{$turmaId}', [ProfessorController::class, 'adicionarAula']); // FALTA ARRUMAR
 
 Route::middleware('auth:sanctum')->post('/aula/cancelar/{aulaId?}', [ProfessorController::class, 'cancelarAula']); // OK
 

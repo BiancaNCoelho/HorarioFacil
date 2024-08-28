@@ -33,6 +33,7 @@ class AulasController extends Controller
         }
         // Validação da aula
         $request->validate([
+            'nome' => 'required|string|max:255',
             'dia_da_semana' => 'required|in:segunda,terça,quarta,quinta,sexta,sábado,domingo',
             'horario' => 'required|date_format:H:i',
             'sala' => 'required|string|max:255',
